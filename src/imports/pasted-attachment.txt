@@ -1,0 +1,163 @@
+Figma Make Prompt — Configure Evaluation Strategy: Body Update
+
+Scope & Constraints
+Update only the scrollable body content of the Configure Evaluation Strategy screen — everything between the page subtitle line ("Adjust how the system evaluates candidates…") and the sticky footer bar. Do not modify the top navigation bar, the 5-step progress breadcrumb, the page title, the page subtitle, the sticky footer (Back + Continue to Add Candidates), or any existing links. Match all visual design — card radius, border weight, surface colors, typography scale, spacing, button styles, shadow treatment, icon style — exactly to the other screens in this flow.
+
+What to Remove from the Current Body
+Remove all of the following completely:
+
+The "Pick a strategy (fast)" heading and its "Start with a preset…" subtitle
+The "Total weight: 100%" and "Strategy: Recommended for this role" display in the top-right of that section
+The 4 preset cards in their current form (Recommended, Delivery-first, Integration-heavy, Module specialist)
+The "Apply preset" button and the "Reset to Recommended" text link
+The quick-action chip strip (Auto-balance, Tighten shortlist, Widen shortlist) and the "Weights normalize automatically to 100%" note
+The entire "Criteria Strategy Matrix" section as currently built — specifically: the CRITERION / CRITICALITY / WEIGHT % / INFLUENCE column headers, all rows with the three-pill CRITICAL / IMPORTANT / OPTIONAL toggle, the weight number input, the circular half-filled dial/toggle control, and the horizontal influence bar
+The "Total Weight: 100% — BALANCED FOR AI RANKING" footer row inside the matrix card
+The "You can adjust this before ranking results…" helper text band
+The bottom utility card containing: the Auto-balance weights toggle, NORMALIZE TO 100% link, RESET TO AI DEFAULTS link, the "Lock strategy for ranked results" button, and the sub-note beneath it
+
+
+What to Build in Its Place
+The new body has two sections that are always present, followed by a third section that appears conditionally.
+
+Section 1 — "Pick a strategy" Card
+A white rounded card (match card style from existing screens). Contains:
+Card header:
+
+Title: "Pick a strategy" — bold, same weight as "Criteria Strategy Matrix" in the current design
+Subtitle below: "AI presets are tuned for this role. Most users pick Recommended and continue. Custom gives full control." — muted, smaller
+
+Five strategy cards in a single horizontal row inside this card. Equal width. Cards are selectable — one is active at a time.
+Card 1 — Balanced (default selected)
+
+A small green badge/tag in the top-left of the card reading "★ RECOMMENDED" in uppercase, small, green accent color
+A checkmark icon badge in the top-right corner of the card (filled circle with checkmark, dark navy — visible when this card is selected)
+Title: Balanced — bold
+Subtitle: "Best fit for this role. AI-optimised." — muted, smaller
+
+Card 2 — Delivery-first
+
+Title: Delivery-first — bold
+Subtitle: "Phases, deployment, stabilisation." — muted, smaller
+No badge
+
+Card 3 — Integration-heavy
+
+Title: Integration-heavy — bold
+Subtitle: "Interfaces, cross-system proof, WRICEF." — muted, smaller
+No badge
+
+Card 4 — Module specialist
+
+Title: Module specialist — bold
+Subtitle: "Deep module and process mastery." — muted, smaller
+No badge
+
+Card 5 — Custom
+
+A small pencil/edit icon centered or top-left inside the card (line icon, matches icon style of the flow)
+Title: Custom — bold
+Subtitle: "Set your own priorities. Full control." — muted, smaller
+No badge
+
+Selected card state: Dark border highlight (same treatment as the current "Recommended" card's selected border). The checkmark badge in the top-right corner appears on whichever card is selected.
+Unselected card state: Lighter border, no checkmark badge, same surface color as in the current unselected preset cards.
+
+Section 2 — Weight Distribution Preview (visible when any preset card — cards 1–4 — is selected)
+Appears directly below the strategy cards row, still inside the same outer white card as Section 1. This section is hidden when Custom (card 5) is selected.
+Section label row:
+
+Left: small uppercase muted label — "WEIGHT DISTRIBUTION — BALANCED" (updates to the name of whichever preset is selected, e.g. "WEIGHT DISTRIBUTION — DELIVERY-FIRST")
+Right: a text link — "Fine-tune →" — in the primary accent blue. Clicking this selects the Custom card and reveals Section 3 (the Criteria Priority Matrix) while hiding this weight distribution preview.
+
+Weight bar grid — 3 columns, 3 rows (9 cells total):
+Each cell contains:
+
+Criterion name — small, medium weight, muted dark text
+A horizontal fill bar below the name — the bar fills proportionally to the weight value shown. Bar track is light gray; filled portion is dark navy (match the existing influence bar color in the current screen)
+Weight percentage to the right of the bar — small, same muted dark text
+
+Populate with these values for the Balanced/Recommended preset (left to right, top to bottom):
+Column 1Column 2Column 3System Experience — 22%Integration Experience — 15%Modules Experience — 15%Project Phases — 10%Business Processes — 10%WRICEF — 10%Deployment Experience — 10%Tools & Technologies — 6%Soft Skills — 2%
+This section is read-only. No controls, no hover states on the bars themselves. Fine-tune link is the only interactive element here.
+
+Section 3 — Criteria Priority Matrix (visible when Custom card is selected, or when Fine-tune is clicked)
+Appears below the strategy cards row when Custom is active. Replaces the weight distribution preview. This is a separate section outside the strategy card, not nested inside it.
+Section header row:
+
+Left: Title "Criteria Priority Matrix" — bold, same weight as existing section titles
+Left below title: subtitle "Click a criterion name to exclude it. Set priority with the dots — drag to reorder sub-criteria." — muted, smaller
+Right: "Allocated 100% ✓ BALANCED" — the percentage in bold accent green, the "✓ BALANCED" text as a small green label beside it. This readout updates live. If total drifts from 100%, remove the "✓ BALANCED" label and show the percentage in default/neutral color instead.
+
+Nine criterion rows. Each criterion is its own white card with a border and rounded corners (not a flat table row — each criterion is a card). Cards stack vertically with consistent gap between them.
+Each criterion card contains:
+Left side:
+
+Criterion name — bold, larger
+Criterion description — muted, smaller, below the name
+Clicking the criterion name toggles the row on/off. When off: name gets a strikethrough, entire card fades to ~35% opacity, all dots appear disabled, weight shows 0%
+
+Right side (all elements on a single horizontal line, right-aligned):
+
+5-dot dial — five dots inline horizontally. Each dot is a clickable circle. The filled dots indicate the selected priority level:
+
+Dots 1–2 when active: fill in red/warning color
+Dots 3–5 when active: fill in dark navy
+Dots to the right of the selected dot: ghost/unfilled state
+
+
+Weight percentage — e.g. "22%" — plain text, no input box, no % symbol input. Monospace or tabular figures. Read-only. Sits to the right of the dot dial.
+Expand control (only on criteria that have sub-criteria): a small badge showing the sub-criteria count (e.g. "3") followed by a chevron (▾ when collapsed, ▴ when expanded). This entire badge+chevron is the click target for expanding. Criteria without sub-criteria do not render this control at all.
+
+Default dot values and sub-criteria counts per criterion:
+CriterionDescriptionDefault dotsSub-criteria countSystem ExperienceS/4HANA, EWM landscape, platform fit5 (dots 1–2 red, 3–5 navy, all 5 filled)3Integration ExperienceSAP & non-SAP integration proof4 (dots 1–2 red, 3–4 navy, dot 5 ghost)3Modules ExperiencePrimary + adjacent modules42Project PhasesBuild, test, cutover, hypercare30Business ProcessesWarehouse flow ownership33WRICEFReports, interfaces, enhancements30Deployment ExperienceEmbedded vs decentralised32Tools & TechnologiesFiori, tooling signals20Soft SkillsCommunication, workshops10
+
+Sub-criteria expanded panel — shown inline below the parent criterion card content when the expand control is clicked. The panel has a slightly lighter surface background (off-white or very light gray, distinct from the card surface). The panel is only visible in Custom mode (Section 3), never in the weight distribution preview (Section 2).
+Panel header row (inside the expanded panel):
+
+Left: small uppercase muted label — "SUB-CRITERIA — DRAG TO REPRIORITISE"
+Right: small italic muted text — "Order determines contribution within [Criterion Name]"
+
+Each sub-criterion row:
+
+Far left: drag handle — three horizontal lines icon (≡), cursor changes to grab on hover
+Position badge — filled dark circle with a white number inside (① ② ③) — updates live after a drag reorder
+Sub-criterion name — medium weight
+Sub-criterion description — muted, smaller, below the name
+Far right: effective contribution percentage — "≈ 11.4%" style — monospace, muted, read-only
+
+Populate System Experience sub-criteria (for the design frame showing this row expanded) as follows:
+
+S/4HANA — Core implementation depth — ≈ 11.4%
+EWM / WM — Warehouse module coverage — ≈ 6.8%
+Platform & Landscape — System architecture context — ≈ 3.7%
+
+Panel footer note (below the last sub row, inside the panel):
+
+A small info icon (ⓘ) followed by italic muted text: "Position 1 carries most weight within System Experience — drag to reorder by importance."
+
+
+Section 4 — Bottom Utility Strip (always visible, below the criteria matrix or the strategy card)
+A single white rounded card spanning the full content width. Contains one horizontal row:
+Left side:
+
+A toggle switch — on by default (blue filled, match existing toggle style in the flow)
+Label beside the toggle: "Auto-balance — weights recalculate as you adjust priority"
+
+Right side:
+
+A single button: "🔒 Lock strategy" — dark filled button, rounded, matches the "Continue to Add Candidates" button style but slightly smaller. Uses a lock icon on the left.
+
+No sub-note text below the button in this strip. No separate Normalise or Reset links in this strip.
+
+Footer Status Line (inside the sticky footer bar, left side — update only this text)
+When a preset is selected and the configuration is complete, the left side of the sticky footer bar shows a small italic muted text line: "Strategy set — ready to rank candidates."
+When in Custom mode with the matrix visible: "Custom mode — set priority with the dots."
+This text sits on the far left of the footer bar, before the Back button. Match the italic muted style visible in the reference screenshots.
+
+States to Design as Separate Frames
+
+Preset selected — default load state: Balanced card selected, checkmark on Balanced card, weight distribution preview visible with 3-column bar grid, Fine-tune link visible, utility strip below with toggle on + Lock strategy button. Footer: "Strategy set — ready to rank candidates."
+Custom selected — matrix visible, all rows collapsed: Custom card selected with checkmark, Criteria Priority Matrix visible, all 9 criterion cards shown with default dot values, no sub-panels open. Allocated 100% ✓ BALANCED shown in matrix header. Footer: "Custom mode — set priority with the dots."
+Custom selected — one row expanded: Same as state 2 but System Experience card shows the sub-criteria panel open with the 3 drag-to-reorder sub rows.
+Row excluded/off state: Show one criterion card (e.g. Soft Skills) in the off state — criterion name has strikethrough, card at ~35% opacity, dots all ghost/disabled, weight shows 0%.
